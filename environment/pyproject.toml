@@ -1,0 +1,14 @@
+[project]
+name = "aind-vr-foraging-primary-qc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aind-behavior-vr-foraging",
+    "aind-data-schema>=1.4.0",
+    "contraqctor>=0.4.3",
+]
+
+[tool.uv.sources]
+aind-behavior-vr-foraging = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging.git", rev = "feat-add-data-contract" }
