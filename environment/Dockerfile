@@ -12,9 +12,10 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         libgl1-mesa-glx \
         libglib2.0-0 \
+        curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install -U --no-cache-dir \
-    aind-data-schema \
-    contraqctor \
-    -e git+https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging.git@feat-add-data-contract#egg=aind-behavior-vr-foraging
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
+COPY ./pyproject.toml ./uv.lock ./
+RUN uv sync --locked --no-dev
