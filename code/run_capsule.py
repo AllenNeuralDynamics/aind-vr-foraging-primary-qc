@@ -13,5 +13,5 @@ if __name__ == "__main__":
     results = runner.run_all_with_progress()
     qc_json = to_ads(results, parsed_args)
     if parsed_args.qc_json_path is not None:
-        with open(parsed_args.qc_json_path, "w", encoding="utf-8") as f:
+        with open(parsed_args.qc_json_path / "quality_control.json", "w", encoding="utf-8") as f:
             f.write(qc_json.model_dump_json(indent=2))
