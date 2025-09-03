@@ -7,10 +7,10 @@ from pathlib import Path
 
 import pydantic
 from aind_data_schema.core.quality_control import (
-    QCEvaluation,
     QCMetric,
     QCStatus,
     QualityControl,
+    Stage,
     Status,
 )
 from aind_data_schema_models.modalities import Modality
@@ -35,7 +35,7 @@ status_converter = {
 
 
 def result_to_qc_metric(
-    result: qc.Result, create_assets: bool = False, asset_root: os.PathLike = Path(".")
+    result: qc.Result, name: str, create_assets: bool = False, asset_root: os.PathLike = Path(".")
 ) -> t.Optional[QCMetric]:
     status = QCStatus(
         evaluator=EVALUATOR, status=status_converter[result.status], timestamp=NOW
@@ -47,6 +47,9 @@ def result_to_qc_metric(
         value=result.result,
         status_history=[status],
         reference=_resolve_reference(result, asset_root) if create_assets else None,
+        tags=[name],
+        modality=Modality.BEHAVIOR,
+        stage=Stage.RAW
     )
 
 
@@ -68,30 +71,29 @@ def _resolve_reference(
 def to_ads(
     results: t.Dict[str | None, t.List[qc.Result]], cli_args: "QCCli"
 ) -> QualityControl:
-    evals = []
+    qc_metrics = []
     for group_name, group in results.items():
         groupby_test_suite = itertools.groupby(group, lambda x: x.suite_name)
         for suite_name, test_results in groupby_test_suite:
             if not test_results:
                 continue
             _test_results = list(test_results)
+            name = f"{group_name if group_name else 'NoGroup'}::{suite_name}"
             metrics = [
                 result_to_qc_metric(
-                    r, create_assets=True, asset_root=cli_args.asset_path
+                    r, name, create_assets=True, asset_root=cli_args.asset_path
                 )
                 for r in _test_results
             ]
             metrics = [m for m in metrics if m is not None]
-            evals.append(
-                QCEvaluation(
-                    modality=Modality.BEHAVIOR,
-                    stage="Raw data",
-                    name=f"{group_name if group_name else 'NoGroup'}::{suite_name}",
-                    created=NOW,
-                    metrics=metrics,
-                )
-            )
-    return QualityControl(evaluations=evals)
+            qc_metrics.extend(metrics)
+
+    qc_tags = set()
+    for metric in qc_metrics:
+        for tag in metric.tags:
+            qc_tags.add(tag)
+
+    return QualityControl(metrics=qc_metrics, default_grouping=list(qc_tags))
 
 
 class QCCli(data_qc._QCCli):
