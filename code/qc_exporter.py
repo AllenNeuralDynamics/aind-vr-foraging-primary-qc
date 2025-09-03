@@ -35,7 +35,10 @@ status_converter = {
 
 
 def result_to_qc_metric(
-    result: qc.Result, name: str, create_assets: bool = False, asset_root: os.PathLike = Path(".")
+    result: qc.Result,
+    name: str,
+    create_assets: bool = False,
+    asset_root: os.PathLike = Path("."),
 ) -> t.Optional[QCMetric]:
     status = QCStatus(
         evaluator=EVALUATOR, status=status_converter[result.status], timestamp=NOW
@@ -49,7 +52,7 @@ def result_to_qc_metric(
         reference=_resolve_reference(result, asset_root) if create_assets else None,
         tags=[name],
         modality=Modality.BEHAVIOR,
-        stage=Stage.RAW
+        stage=Stage.RAW,
     )
 
 
