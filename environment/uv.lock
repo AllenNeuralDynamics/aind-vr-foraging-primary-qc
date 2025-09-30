@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.12"
 resolution-markers = [
     "sys_platform == 'darwin'",
@@ -23,7 +23,7 @@ wheels = [
 
 [[package]]
 name = "aind-behavior-services"
-version = "0.11.0"
+version = "0.12.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aind-behavior-curriculum" },
@@ -33,23 +33,23 @@ dependencies = [
     { name = "scikit-learn" },
     { name = "semver" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b6/74/fb4a3e6fc6d3618168f685a3504f6e8411706fd887aabfd2911be32488ef/aind_behavior_services-0.11.0.tar.gz", hash = "sha256:e9eb0dac83792f782ae00e75b7e2424c7e8cbd3fa83f9487350ac5cf301d8aee", size = 137680, upload-time = "2025-05-13T18:17:32.208Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/34/45/29a36e272dfc2f43b3ddb0deaea5bf58f606d8009af9ed853381123b259c/aind_behavior_services-0.12.1.tar.gz", hash = "sha256:a1f8541e474c1f721fdb5176b23892398cd133f29f8d3355d259a32b2c6554ef", size = 144533, upload-time = "2025-09-18T15:06:01.848Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d5/13/2bfce2afb11acd779d9e0bef4b15dc35f57afc5bf8c3ff33f79e7da7d430/aind_behavior_services-0.11.0-py3-none-any.whl", hash = "sha256:4e105f8b0212d3e675ee647e2dd2bc772b791867245f0601b65ac87ae94d4824", size = 50047, upload-time = "2025-05-13T18:17:30.157Z" },
+    { url = "https://files.pythonhosted.org/packages/c7/a8/4b7808ad187ccee01f926ec8c28328d676297ba7be53c72a4b4b14d71f1e/aind_behavior_services-0.12.1-py3-none-any.whl", hash = "sha256:5dbb46c6a960e8cb52faf2eeb205ac4546d281a52b44a4eb13ad3fcc5953e948", size = 48677, upload-time = "2025-09-18T15:06:00.401Z" },
 ]
 
 [[package]]
 name = "aind-behavior-vr-foraging"
-version = "0.6.0"
-source = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging.git?rev=dev#46b6df90d2f2ea11dca6227598be06aa043f46bb" }
+version = "0.6.0rc3"
+source = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging.git?rev=main#231f70f1893d710b72dbf98d186e27c6f5b64e36" }
 dependencies = [
     { name = "aind-behavior-services" },
+    { name = "pydantic-settings" },
 ]
 
 [package.optional-dependencies]
 data = [
     { name = "contraqctor" },
-    { name = "pydantic-settings" },
 ]
 
 [[package]]
@@ -93,9 +93,9 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aind-behavior-vr-foraging", extras = ["data"], git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging.git?rev=dev" },
+    { name = "aind-behavior-vr-foraging", extras = ["data"], git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging.git?rev=main" },
     { name = "aind-data-schema", specifier = ">=2.0" },
-    { name = "contraqctor", specifier = ">=0.4.3" },
+    { name = "contraqctor", specifier = ">=0.4.9" },
     { name = "pydantic-settings", specifier = ">=2.10.1" },
 ]
 
@@ -195,7 +195,7 @@ wheels = [
 
 [[package]]
 name = "contraqctor"
-version = "0.4.3"
+version = "0.4.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aind-behavior-services" },
@@ -208,11 +208,12 @@ dependencies = [
     { name = "pyyaml" },
     { name = "requests" },
     { name = "rich" },
+    { name = "scipy" },
     { name = "semver" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d5/a0/fb61e4fa91566176522999f30037a5f572c2776b849680cc93a36a8c64eb/contraqctor-0.4.3.tar.gz", hash = "sha256:ff2c9a3142d5328d3c2ff2f0157efea4ce303d9641b9b746c913350c168e4e1c", size = 147810, upload-time = "2025-05-30T23:21:17.51Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ba/9e/457b8bf87aac1b71e311519ee07fb6d643237e5b3f265a688eded522069f/contraqctor-0.4.9.tar.gz", hash = "sha256:2ab5ba8973ed4f0dc275830601cfa3c760872073e58c11a4433615f090c99d9f", size = 179255, upload-time = "2025-09-19T16:48:06.619Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6c/05/8f06da98fbb68c9fdaff2572433c709205beb31306461e2a03a9de6ba1b8/contraqctor-0.4.3-py3-none-any.whl", hash = "sha256:d090952d82098cf9cb6cc1044a025778b62ca264b51808fa877096d59d3ceb04", size = 48777, upload-time = "2025-05-30T23:21:16.354Z" },
+    { url = "https://files.pythonhosted.org/packages/25/37/7d24feaec06e6562fa4574018a6fa1d6cdd262bc2654d939d341a37576c2/contraqctor-0.4.9-py3-none-any.whl", hash = "sha256:56216c57f355d2866f1ea4a70d46320d66ad154fa13fa10a005b543ca1c47b9a", size = 55793, upload-time = "2025-09-19T16:48:05.307Z" },
 ]
 
 [[package]]
