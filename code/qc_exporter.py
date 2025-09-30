@@ -98,7 +98,7 @@ def to_ads(
             name = f"{group_name if group_name else 'NoGroup'}::{suite_name}"
             metrics = [
                 result_to_qc_metric(
-                    r, name, create_assets=True, asset_root=cli_args.asset_path
+                    r, create_assets=True, asset_root=cli_args.asset_path
                 )
                 for r in _test_results
             ]
