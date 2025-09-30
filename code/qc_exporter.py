@@ -34,11 +34,28 @@ status_converter = {
 }
 
 
+def convert_numpy_to_python_data_type(obj):
+    """
+    Serializes numpy to python
+    types for writing to json
+    """
+    if isinstance(obj, dict):
+        return {k: convert_numpy_to_python_data_type(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_to_python_data_type(v) for v in obj]
+    elif isinstance(obj, (np.integer,)):
+        return int(obj)
+    elif isinstance(obj, (np.floating,)):
+        return float(obj)
+    elif isinstance(obj, (np.bool,)):
+        return bool(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    else:
+        return obj
+
 def result_to_qc_metric(
-    result: qc.Result,
-    name: str,
-    create_assets: bool = False,
-    asset_root: os.PathLike = Path("."),
+    result: qc.Result, create_assets: bool = False, asset_root: os.PathLike = Path(".")
 ) -> t.Optional[QCMetric]:
     status = QCStatus(
         evaluator=EVALUATOR, status=status_converter[result.status], timestamp=NOW
@@ -47,12 +64,9 @@ def result_to_qc_metric(
     return QCMetric(
         name=f"{result.suite_name}::{result.test_name}",
         description=f"Test: {result.description} // Message: {result.message}",
-        value=result.result,
+        value=convert_numpy_to_python_data_type(result.result),
         status_history=[status],
         reference=_resolve_reference(result, asset_root) if create_assets else None,
-        tags=[name],
-        modality=Modality.BEHAVIOR,
-        stage=Stage.RAW,
     )
 
 
