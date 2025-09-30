@@ -34,7 +34,7 @@ status_converter = {
     qc.Status.ERROR: Status.FAIL,
 }
 
-def numpy_to_python(obj):
+def convert_numpy_to_python_data_type(obj):
     """
     Serializes numpy to python
     types for writing to json
