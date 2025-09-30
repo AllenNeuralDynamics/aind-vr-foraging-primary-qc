@@ -1,5 +1,6 @@
 import itertools
 import os
+import numpy as np
 import typing as t
 import uuid
 from datetime import datetime, timezone
