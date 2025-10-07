@@ -1,5 +1,6 @@
 import itertools
 import os
+import numpy as np
 import typing as t
 import uuid
 from datetime import datetime, timezone
@@ -33,6 +34,25 @@ status_converter = {
     qc.Status.ERROR: Status.FAIL,
 }
 
+def convert_numpy_to_python_data_type(obj):
+    """
+    Serializes numpy to python
+    types for writing to json
+    """
+    if isinstance(obj, dict):
+        return {k: convert_numpy_to_python_data_type(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_to_python_data_type(v) for v in obj]
+    elif isinstance(obj, (np.integer,)):
+        return int(obj)
+    elif isinstance(obj, (np.floating,)):
+        return float(obj)
+    elif isinstance(obj, (np.bool,)):
+        return bool(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    else:
+        return obj
 
 def result_to_qc_metric(
     result: qc.Result, create_assets: bool = False, asset_root: os.PathLike = Path(".")
@@ -44,7 +64,7 @@ def result_to_qc_metric(
     return QCMetric(
         name=f"{result.suite_name}::{result.test_name}",
         description=f"Test: {result.description} // Message: {result.message}",
-        value=result.result,
+        value=convert_numpy_to_python_data_type(result.result),
         status_history=[status],
         reference=_resolve_reference(result, asset_root) if create_assets else None,
     )
@@ -94,7 +114,7 @@ def to_ads(
     return QualityControl(evaluations=evals)
 
 
-class QCCli(data_qc._QCCli):
+class QCCli(data_qc.QcCli):
     qc_json_path: Path = pydantic.Field(
         default=Path("qc.json"),
         description="Path to export the QC results in ADS format. If not provided, results will not be exported.",
