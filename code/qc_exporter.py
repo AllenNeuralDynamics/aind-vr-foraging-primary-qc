@@ -80,6 +80,8 @@ def _resolve_reference(
         if isinstance(asset.asset, Figure):
             random_hash = uuid.uuid4().hex
             path = f"{result.suite_name}_{result.test_name}_{random_hash}.png"
+            if not Path(asset_root).exists():
+                Path(asset_root).mkdir()
             asset.asset.savefig(Path(asset_root) / path)
             return path
     return None

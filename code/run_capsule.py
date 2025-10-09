@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     logger.info(f"Running qc on primary data at path {primary_data_path[0]}")
     parsed_args = QCCli(
-        data_path=primary_data_path[0], qc_json_path=settings.output_directory, asset_path=settings.output_directory
+        data_path=primary_data_path[0], qc_json_path=settings.output_directory, asset_path=settings.output_directory / "raw_qc"
     )
     vr_dataset = data_qc.dataset(parsed_args.data_path)
 
