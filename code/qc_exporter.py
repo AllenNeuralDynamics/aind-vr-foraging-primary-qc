@@ -83,7 +83,7 @@ def _resolve_reference(
             if not Path(asset_root).exists():
                 Path(asset_root).mkdir()
             asset.asset.savefig(Path(asset_root) / path)
-            return path
+            return (Path(asset_root.stem) / path).as_posix()
     return None
 
 
