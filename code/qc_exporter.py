@@ -56,7 +56,7 @@ def convert_numpy_to_python_data_type(obj):
         return obj
 
 def result_to_qc_metric(
-    result: qc.Result, name, create_assets: bool = False, asset_root: os.PathLike = Path(".")
+    result: qc.Result, tags: list[str], create_assets: bool = False, asset_root: os.PathLike = Path(".")
 ) -> t.Optional[QCMetric]:
     status = QCStatus(
         evaluator=EVALUATOR, status=status_converter[result.status], timestamp=NOW
@@ -70,7 +70,7 @@ def result_to_qc_metric(
         reference=_resolve_reference(result, asset_root) if create_assets else None,
         modality=Modality.BEHAVIOR,
         stage=Stage.PROCESSING,
-        tags=[name]
+        tags=tags
     )
 
 
@@ -101,10 +101,10 @@ def to_ads(
             if not test_results:
                 continue
             _test_results = list(test_results)
-            name = f"{group_name if group_name else 'NoGroup'}::{suite_name}"
+            _group_name = group_name if group_name else "NoGroup"
             metrics = [
                 result_to_qc_metric(
-                    r, name, create_assets=True, asset_root=cli_args.asset_path
+                    r, [_group_name, suite_name], create_assets=True, asset_root=cli_args.asset_path
                 )
                 for r in _test_results
             ]
