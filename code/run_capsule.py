@@ -1,3 +1,4 @@
+import json
 import logging
 from aind_behavior_vr_foraging import data_qc
 from pathlib import Path
@@ -35,6 +36,20 @@ if __name__ == "__main__":
         )
 
     logger.info(f"Running qc on primary data at path {primary_data_path[0]}")
+    # pull version from here - file always assumed to exist at that path
+    task_input_logic_path = (
+        primary_data_path[0] / "behavior" / "Logs" / "tasklogic_input.json"
+    )
+    if not task_input_logic_path.exists():
+        raise FileNotFoundError(
+            f"No task logic input file found at path {task_input_logic_path}"
+        )
+
+    with open(task_input_logic_path, "r") as f:
+        task_input_logic = json.load(f)
+
+    contract_version = task_input_logic["version"]
+    logger.info(f"Using data contract version {contract_version}")
     parsed_args = QCCli(
         data_path=primary_data_path[0], qc_json_path=settings.output_directory, asset_path=settings.output_directory / "raw_qc"
     )
