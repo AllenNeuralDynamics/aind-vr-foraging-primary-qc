@@ -116,7 +116,7 @@ def to_ads(
     return QualityControl(evaluations=evals)
 
 
-class QCCli(data_qc.QcCli):
+class QCCli(data_qc.DataQcCli):
     qc_json_path: Path = pydantic.Field(
         default=Path("qc.json"),
         description="Path to export the QC results in ADS format. If not provided, results will not be exported.",

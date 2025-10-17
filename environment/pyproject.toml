@@ -5,12 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "aind-behavior-vr-foraging[data]",
-    "aind-data-schema>=1.4.0",
+    "aind-behavior-vr-foraging",
+    "contraqctor",
+    "aind-data-schema<2.0",
     "aind-data-schema-models>=0.7.5",
-    "contraqctor>=0.4.9",
     "pydantic-settings>=2.10.1",
 ]
-
-[tool.uv.sources]
-aind-behavior-vr-foraging = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging.git", rev = "main" }
