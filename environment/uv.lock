@@ -40,11 +40,15 @@ wheels = [
 
 [[package]]
 name = "aind-behavior-vr-foraging"
-version = "0.6.0rc3"
-source = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging.git?rev=main#231f70f1893d710b72dbf98d186e27c6f5b64e36" }
+version = "0.6.1"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aind-behavior-services" },
     { name = "pydantic-settings" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f4/02/6f4dce638b70c0fae2a707020c7a50dbe463ec466c94413314c7337259ab/aind_behavior_vr_foraging-0.6.1.tar.gz", hash = "sha256:f20c698d2b87c5fa4dd1e23e720c1fcf39969017754db72bd7675f4da79ef7b0", size = 34123, upload-time = "2025-10-24T21:56:13.361Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/dd/3e/5232b4acad3565d8a19c6023a4f6ac4e53bd059281de73076da66f2d8cf0/aind_behavior_vr_foraging-0.6.1-py3-none-any.whl", hash = "sha256:27d288638d5ee51e5d52d1115833da30bb4756f4e8c4111261777681409c6ccc", size = 45590, upload-time = "2025-10-24T21:56:12.513Z" },
 ]
 
 [package.optional-dependencies]
@@ -98,9 +102,9 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aind-behavior-vr-foraging", extras = ["data"], git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging.git?rev=main" },
+    { name = "aind-behavior-vr-foraging", extras = ["data"] },
     { name = "aind-data-schema", specifier = ">=2.0" },
-    { name = "contraqctor", specifier = ">=0.4.9" },
+    { name = "contraqctor", specifier = ">=0.5.3" },
     { name = "pydantic-settings", specifier = ">=2.10.1" },
 ]
 
@@ -203,11 +207,12 @@ wheels = [
 
 [[package]]
 name = "contraqctor"
-version = "0.4.9"
+version = "0.5.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aind-behavior-services" },
     { name = "harp-python" },
+    { name = "jinja2" },
     { name = "matplotlib" },
     { name = "numpy" },
     { name = "opencv-python" },
@@ -219,9 +224,9 @@ dependencies = [
     { name = "scipy" },
     { name = "semver" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ba/9e/457b8bf87aac1b71e311519ee07fb6d643237e5b3f265a688eded522069f/contraqctor-0.4.9.tar.gz", hash = "sha256:2ab5ba8973ed4f0dc275830601cfa3c760872073e58c11a4433615f090c99d9f", size = 179255, upload-time = "2025-09-19T16:48:06.619Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/95/33/e0dfd99fc23ab1ac6162b496727edef844e9279e13a969b05a1b4b05d426/contraqctor-0.5.3.tar.gz", hash = "sha256:0d11e4cf50acf01288b5ed66053211105c3a716fe8a31d63bcc2bf423037ac20", size = 54226, upload-time = "2025-11-10T17:31:19.497Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/25/37/7d24feaec06e6562fa4574018a6fa1d6cdd262bc2654d939d341a37576c2/contraqctor-0.4.9-py3-none-any.whl", hash = "sha256:56216c57f355d2866f1ea4a70d46320d66ad154fa13fa10a005b543ca1c47b9a", size = 55793, upload-time = "2025-09-19T16:48:05.307Z" },
+    { url = "https://files.pythonhosted.org/packages/b4/9a/94fa67d2aecf7703a68be18b97b8d1af09ec9c26c73b2c21d5e881e46353/contraqctor-0.5.3-py3-none-any.whl", hash = "sha256:9306521efd6165007409319be39d4a8d9e286028693237584dbfc9f87e974292", size = 67638, upload-time = "2025-11-10T17:31:18.482Z" },
 ]
 
 [[package]]
