@@ -34,6 +34,25 @@ status_converter = {
     qc.Status.ERROR: Status.FAIL,
 }
 
+def convert_numpy_to_python_data_type(obj):
+    """
+    Serializes numpy to python
+    types for writing to json
+    """
+    if isinstance(obj, dict):
+        return {k: convert_numpy_to_python_data_type(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_to_python_data_type(v) for v in obj]
+    elif isinstance(obj, (np.integer,)):
+        return int(obj)
+    elif isinstance(obj, (np.floating,)):
+        return float(obj)
+    elif isinstance(obj, (np.bool,)):
+        return bool(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    else:
+        return obj
 
 def convert_numpy_to_python_data_type(obj):
     """

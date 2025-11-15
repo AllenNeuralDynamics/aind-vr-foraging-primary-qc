@@ -55,6 +55,10 @@ wheels = [
 data = [
     { name = "contraqctor" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/56/9c/820cce3906ad1a013bd5bd2b17d1cfedb57fce172e84d1e97ac2aa81e6d5/aind_behavior_vr_foraging-0.6.0rc12.tar.gz", hash = "sha256:2e2db09b2ebc33b9238094b6aa1267e9f9d6df79b63a0bb9d4269bb9195ff220", size = 34701, upload-time = "2025-10-15T00:26:13.775Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/80/a7/f622779264daa521d0a7b071040f5bae6f4b252c7ee1f884c0230137ee72/aind_behavior_vr_foraging-0.6.0rc12-py3-none-any.whl", hash = "sha256:966217499f3dbeaf75a180b520af8c568267134f62c1d316d569c5bfc82b4444", size = 46246, upload-time = "2025-10-15T00:26:12.411Z" },
+]
 
 [[package]]
 name = "aind-data-schema"
@@ -89,7 +93,7 @@ name = "aind-vr-foraging-primary-qc"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "aind-behavior-vr-foraging", extra = ["data"] },
+    { name = "aind-behavior-vr-foraging" },
     { name = "aind-data-schema" },
     { name = "contraqctor" },
     { name = "pydantic-settings" },
