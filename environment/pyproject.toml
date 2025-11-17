@@ -6,8 +6,15 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "aind-behavior-vr-foraging",
-    "contraqctor",
-    "aind-data-schema<2.0",
-    "aind-data-schema-models>=0.7.5",
+    "aind-data-schema>=2.0",
     "pydantic-settings>=2.10.1",
+    "contraqctor>=0.5.3"
 ]
+
+[dependency-groups]
+
+dev = ["ruff"]
+
+[tool.uv]
+default-groups = ['dev']
+required-version = '>=0.8.4'
