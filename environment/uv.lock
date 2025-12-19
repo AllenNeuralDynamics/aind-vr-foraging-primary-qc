@@ -39,15 +39,15 @@ wheels = [
 
 [[package]]
 name = "aind-behavior-vr-foraging"
-version = "0.6.2"
+version = "0.6.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aind-behavior-services" },
     { name = "pydantic-settings" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/30/d2/0b9bd6640d959795fb4280cad0698a0bda724d90f56e932225123322033e/aind_behavior_vr_foraging-0.6.2.tar.gz", hash = "sha256:4405ade3a1ea4b7c1a13c095330ecb7ecb5f1042163752b374277dcf746213de", size = 34512, upload-time = "2025-11-18T02:20:28.169Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/51/a9/0da4540961cba3596781bad10bb2d159dbfe1ed269b018d29bc71702e22e/aind_behavior_vr_foraging-0.6.4.tar.gz", hash = "sha256:b833d547bc18d573eced376e7d84fd655c6e64feaa9f3cac092e2ddae399f3c0", size = 35245, upload-time = "2025-12-11T23:12:45.022Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/36/96/13f405994336737f8682bd29c53182a29836586d6fba1e42854eb414076e/aind_behavior_vr_foraging-0.6.2-py3-none-any.whl", hash = "sha256:afebc1a699a59d75379d54f87b6a989b816818b20f7ef584db740808d6e6e24c", size = 46063, upload-time = "2025-11-18T02:20:26.941Z" },
+    { url = "https://files.pythonhosted.org/packages/6c/59/0cb57f2f1f256596b5f35b8475a7ba8e2b9ded87a40e9fe493efe305fe7f/aind_behavior_vr_foraging-0.6.4-py3-none-any.whl", hash = "sha256:9e03904f0ce83a82d739c25332bfcd7bce2ab7cab2a718e39746513ac6b02eaa", size = 47382, upload-time = "2025-12-11T23:12:45.944Z" },
 ]
 
 [[package]]
