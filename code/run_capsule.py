@@ -1,6 +1,7 @@
 import json
 import logging
-from aind_behavior_vr_foraging import data_qc
+from aind_behavior_vr_foraging.data_qc import data_qc
+from aind_behavior_vr_foraging.data_contract import dataset
 from pathlib import Path
 from pydantic import Field
 from pydantic_settings import BaseSettings
@@ -53,7 +54,7 @@ if __name__ == "__main__":
     parsed_args = QCCli(
         data_path=primary_data_path[0], qc_json_path=settings.output_directory, asset_path=settings.output_directory / "raw_qc"
     )
-    vr_dataset = data_qc.dataset(parsed_args.data_path)
+    vr_dataset = dataset(parsed_args.data_path)
 
     runner = data_qc.make_qc_runner(vr_dataset)
     results = runner.run_all_with_progress()
