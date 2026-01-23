@@ -119,7 +119,6 @@ def to_ads(
             if tag not in qc_tags:
                 qc_tags.append(tag)
 
-    print([(tuple(qc_tags))])
     return QualityControl(metrics=qc_metrics, default_grouping=[(tuple(qc_tags))])
 
 
