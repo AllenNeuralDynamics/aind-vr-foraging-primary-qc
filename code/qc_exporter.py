@@ -56,7 +56,7 @@ def convert_numpy_to_python_data_type(obj):
 
 
 def result_to_qc_metric(
-    result: qc.Result, tags: list[str], create_assets: bool = False, asset_root: os.PathLike = Path(".")
+    result: qc.Result, tag_key: str, tag_value: str, create_assets: bool = False, asset_root: os.PathLike = Path(".")
 ) -> t.Optional[QCMetric]:
     status = QCStatus(
         evaluator=EVALUATOR, status=status_converter[result.status], timestamp=NOW
@@ -70,7 +70,9 @@ def result_to_qc_metric(
         reference=_resolve_reference(result, asset_root) if create_assets else None,
         modality=Modality.BEHAVIOR,
         stage=Stage.PROCESSING,
-        tags=tags
+        tags={
+            tag_key: tag_value
+        }
     )
 
 
@@ -104,19 +106,21 @@ def to_ads(
             _group_name = group_name if group_name else "NoGroup"
             metrics = [
                 result_to_qc_metric(
-                    r, [_group_name, suite_name], create_assets=True, asset_root=cli_args.asset_path
+                    r, _group_name, suite_name, create_assets=True, asset_root=cli_args.asset_path
                 )
                 for r in _test_results
             ]
             metrics = [m for m in metrics if m is not None]
             qc_metrics.extend(metrics)
 
-    qc_tags = set()
+    qc_tags = ["Modality"]
     for metric in qc_metrics:
         for tag in metric.tags:
-            qc_tags.add(tag)
+            if tag not in qc_tags:
+                qc_tags.append(tag)
 
-    return QualityControl(metrics=qc_metrics, default_grouping=list(qc_tags))
+    print([(tuple(qc_tags))])
+    return QualityControl(metrics=qc_metrics, default_grouping=[(tuple(qc_tags))])
 
 
 class QCCli(data_qc.DataQcCli):
