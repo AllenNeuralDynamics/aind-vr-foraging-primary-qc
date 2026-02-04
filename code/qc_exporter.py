@@ -113,13 +113,13 @@ def to_ads(
             metrics = [m for m in metrics if m is not None]
             qc_metrics.extend(metrics)
 
-    qc_tags = ["Modality"]
+    qc_tags = ["modality", []]
     for metric in qc_metrics:
         for tag in metric.tags:
-            if tag not in qc_tags:
-                qc_tags.append(tag)
+            if tag not in qc_tags[1]:
+                qc_tags[1].append(tag)
 
-    return QualityControl(metrics=qc_metrics, default_grouping=[(tuple(qc_tags))])
+    return QualityControl(metrics=qc_metrics, default_grouping=qc_tags)
 
 
 class QCCli(data_qc.DataQcCli):
