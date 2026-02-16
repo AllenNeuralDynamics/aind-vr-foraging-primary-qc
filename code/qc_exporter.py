@@ -72,7 +72,7 @@ def result_to_qc_metric(
         modality=Modality.BEHAVIOR,
         stage=Stage.PROCESSING,
         tags={
-            "TestSuite": tag_value,
+            TEST_SUITE_TAG: tag_value,
             tag_value: tag_key
         }
     )
