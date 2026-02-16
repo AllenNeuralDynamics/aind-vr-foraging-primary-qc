@@ -71,7 +71,8 @@ def result_to_qc_metric(
         modality=Modality.BEHAVIOR,
         stage=Stage.PROCESSING,
         tags={
-            tag_key: tag_value
+            "TestSuite": tag_value,
+            tag_value: tag_key
         }
     )
 
@@ -113,10 +114,10 @@ def to_ads(
             metrics = [m for m in metrics if m is not None]
             qc_metrics.extend(metrics)
 
-    qc_tags = ["modality", []]
+    qc_tags = ["TestSuite", []]
     for metric in qc_metrics:
         for tag in metric.tags:
-            if tag not in qc_tags[1]:
+            if tag not in qc_tags[1] and tag != "TestSuite":
                 qc_tags[1].append(tag)
 
     return QualityControl(metrics=qc_metrics, default_grouping=qc_tags)
