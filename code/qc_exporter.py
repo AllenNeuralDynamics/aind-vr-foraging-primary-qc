@@ -70,7 +70,7 @@ def result_to_qc_metric(
         status_history=[status],
         reference=_resolve_reference(result, asset_root) if create_assets else None,
         modality=Modality.BEHAVIOR,
-        stage=Stage.PROCESSING,
+        stage=Stage.RAW,
         tags={
             TEST_SUITE_TAG: tag_value,
             tag_value: tag_key
