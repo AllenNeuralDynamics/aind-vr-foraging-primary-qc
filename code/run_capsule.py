@@ -36,7 +36,10 @@ if __name__ == "__main__":
             "Multiple primary data assets attached. Only single asset needed"
         )
 
-    logger.info(f"Running qc on primary data at path {primary_data_path[0]}")
+    with open(primary_data_path[0] / "data_description.json") as f:
+        data_description = json.load(f)
+
+    logger.info(f"Running qc on asset {data_description["name"]}")
     # pull version from here - file always assumed to exist at that path
     task_input_logic_path = (
         primary_data_path[0] / "behavior" / "Logs" / "tasklogic_input.json"
