@@ -8,6 +8,8 @@ dependencies = [
     "aind-behavior-vr-foraging[data] >= 1.2.1",
     "aind-data-schema>=2.0",
     "pydantic-settings>=2.10.1",
+    "log-schema==0.2.10.dev1",
+    "watchtower"
 ]
 
 [dependency-groups]
