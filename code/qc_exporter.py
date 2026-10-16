@@ -116,12 +116,16 @@ def to_ads(
             qc_metrics.extend(metrics)
 
     qc_tags = [TEST_SUITE_TAG, []]
+    allow_failed_metrics = []
     for metric in qc_metrics:
         for tag in metric.tags:
+            value = metric.tags[tag]
+            if value not in allow_failed_metrics:
+                allow_failed_metrics.append(metric.tags[tag])
             if tag not in qc_tags[1] and tag != TEST_SUITE_TAG:
                 qc_tags[1].append(tag)
 
-    return QualityControl(metrics=qc_metrics, default_grouping=qc_tags)
+    return QualityControl(metrics=qc_metrics, default_grouping=qc_tags, allow_tag_failures=allow_failed_metrics)
 
 
 class QCCli(data_qc.DataQcCli):
