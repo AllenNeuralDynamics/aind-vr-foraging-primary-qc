@@ -86,6 +86,6 @@ def run() -> None:
 if __name__ == "__main__":
     try:
         run()
-    except Exception as e:
+    except Exception:
         logging.exception("Pipeline stage failed", extra={"event_type": "stage_error"})
 
